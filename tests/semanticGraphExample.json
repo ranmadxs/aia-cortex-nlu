@@ -1,0 +1,53 @@
+{
+	"_id" : "65433cf6cc35050b993dddb8",
+	"semanticTree" : "-> leer/VERB (root)\n  -> correo/NOUN (obj)\n    -> yahoo/ADJ (amod)\n",
+	"dotFormat" : "digraph  {\n  N_1 [label='leer/VERB-1'];\n  N_2 [label='correo/NOUN-2'];\n  N_3 [label='yahoo/ADJ-3'];\n  N_1 -> N_2 [label='obj'];\n  N_2 -> N_3 [label='amod'];\n}\n",
+	"formattedText" : "[leer/VERB obj>[correo/NOUN amod>yahoo/ADJ]]",
+	"sentence" : "leer correo yahoo",
+	"aiaMessageId" : "65433cd40276663ba9beb076",
+	"nodes" : [
+		{
+			"originalText" : "leer",
+			"tag" : "VERB",
+			"index" : 1,
+			"relationType" : "root"
+		},
+		{
+			"originalText" : "correo",
+			"tag" : "NOUN",
+			"index" : 2,
+			"relationType" : "obj",
+			"parent" : {
+				"originalText" : "leer",
+				"tag" : "VERB",
+				"index" : 1
+			},
+			"semanticNodeTree" : "leer/VERB -> correo/NOUN (obj)"
+		},
+		{
+			"originalText" : "yahoo",
+			"tag" : "ADJ",
+			"index" : 3,
+			"relationType" : "amod",
+			"parent" : {
+				"originalText" : "correo",
+				"tag" : "NOUN",
+				"index" : 2
+			},
+			"semanticNodeTree" : "correo/NOUN -> yahoo/ADJ (amod)"
+		}
+	],
+	"classification" : "CMD",
+	"head" : {
+		"producer" : "amanda-ia",
+		"creationDate" : "2023-11-02T03:08:54.148-03:00",
+		"version" : "0.0.1-SNAPSHOT"
+	},
+	"breadcrumb" : [
+		{
+			"creationDate" : "2023-11-02T03:08:54.148-03:00",
+			"name" : "amanda-ia.NLProcessorComponent"
+		}
+	],
+	"_class" : "cl.yai.amandaia.web.model.AIASemanticGraph"
+}

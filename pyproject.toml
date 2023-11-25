@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "aia-cortex-nlu"
+version = "0.1.0"
+description = "Natural Language"
+authors = ["Edgar Rodrigo Sanchez De Gracia <edgr.sanchez@mercadolibre.cl>"]
+readme = "README.md"
+packages = [{include = "aia_cortex_nlu"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11.4,<3.12"
+wheel = "0.41.3"
+openai = "^0.28.1"
+confluent-kafka = "2.3.0"
+pymongo = "4.2.0"
+pandas = "2.1.2"
+simplenlg = "0.2.0"
+python-dotenv = "^1.0.0"
+pyyaml = "^6.0.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.pytest.ini_options]
+pythonpath = "aia_cortex_nlu"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.1.3"
+pytest-dotenv = "^0.5.2"
+pytest-cov = "^4.0.0"
+
+[tool.poetry.scripts]
+daemon = 'aia_cortex_nlu.daemon:run'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

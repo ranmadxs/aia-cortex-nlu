@@ -1,0 +1,7 @@
+root,obj,amod,case,Leer Email
+leer,correo,yahoo,de,True
+leer,correo,None,None,True
+leer,None,None,None,False
+None,correo,None,None,False
+None,None,None,de,False
+leer,noticias,None,None,False

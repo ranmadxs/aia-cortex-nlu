@@ -1,0 +1,32 @@
+VERB-1,NOUN-2,NOUN-3,ADP-4,Leer Email
+leer,correo,yahoo,de,Yes
+leer,correo,None,None,Yes
+
+
+root,obj,nmod,case,Leer Email
+leer,correo,yahoo,de,Yahoo
+leer,correo,None,None,All
+
+
+-> leer/VERB (root)
+  -> correo/NOUN (obj)
+    -> yahoo/NOUN (nmod)
+      -> de/ADP (case)
+
+
+-> leer/VERB (root)
+  -> correo/NOUN (obj)
+
+
+-> leer/VERB (root)
+  -> correo/NOUN (obj)
+    -> yahoo/NOUN (nmod)
+      -> de/ADP (case)
+
+-> estás/AUX (root)
+  -> cómo/PRON (obl)
+
+
+-> ejecutar/VERB (root)
+  -> encender/VERB (xcomp)
+    -> bomba/NOUN (obj)
