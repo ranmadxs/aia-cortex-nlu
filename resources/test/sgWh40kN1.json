@@ -1,0 +1,77 @@
+{
+    "_id": "658264b9b603637cf5c976b6",
+    "semanticTree": "-> space/VERB (root)\n  -> modo/NOUN (nsubj)\n    -> warhammer/ADJ (amod)\n  -> marine/NOUN (obj)\n    -> predator/ADJ (amod)\n",
+    "dotFormat": "digraph  {\n  N_3 [label=\"space/VERB-3\"];\n  N_1 [label=\"modo/NOUN-1\"];\n  N_2 [label=\"warhammer/ADJ-2\"];\n  N_4 [label=\"marine/NOUN-4\"];\n  N_5 [label=\"predator/ADJ-5\"];\n  N_3 -> N_1 [label=\"nsubj\"];\n  N_3 -> N_4 [label=\"obj\"];\n  N_1 -> N_2 [label=\"amod\"];\n  N_4 -> N_5 [label=\"amod\"];\n}\n",
+    "formattedText": "[space/VERB\n  nsubj>[modo/NOUN amod>warhammer/ADJ]\n  obj>[marine/NOUN amod>predator/ADJ]]",
+    "sentence": "modo warhammer space marine predator",
+    "aiaMessageId": "658263e47311fb696dfdb0df",
+    "nodes": [
+      {
+        "originalText": "space",
+        "tag": "VERB",
+        "index": "3",
+        "relationType": "root"
+      },
+      {
+        "originalText": "modo",
+        "tag": "NOUN",
+        "index": "1",
+        "relationType": "nsubj",
+        "parent": {
+          "originalText": "space",
+          "tag": "VERB",
+          "index": "3"
+        },
+        "semanticNodeTree": "space/VERB -> modo/NOUN (nsubj)"
+      },
+      {
+        "originalText": "warhammer",
+        "tag": "ADJ",
+        "index": "2",
+        "relationType": "amod",
+        "parent": {
+          "originalText": "modo",
+          "tag": "NOUN",
+          "index": "1"
+        },
+        "semanticNodeTree": "modo/NOUN -> warhammer/ADJ (amod)"
+      },
+      {
+        "originalText": "marine",
+        "tag": "NOUN",
+        "index": "4",
+        "relationType": "obj",
+        "parent": {
+          "originalText": "space",
+          "tag": "VERB",
+          "index": "3"
+        },
+        "semanticNodeTree": "space/VERB -> marine/NOUN (obj)"
+      },
+      {
+        "originalText": "predator",
+        "tag": "ADJ",
+        "index": "5",
+        "relationType": "amod",
+        "parent": {
+          "originalText": "marine",
+          "tag": "NOUN",
+          "index": "4"
+        },
+        "semanticNodeTree": "marine/NOUN -> predator/ADJ (amod)"
+      }
+    ],
+    "classification": "CMD",
+    "head": {
+      "producer": "amanda-ia",
+      "creationDate": "2023-12-20T03:51:21.494Z",
+      "version": "0.0.1-SNAPSHOT"
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2023-12-20T03:51:21.494Z",
+        "name": "amanda-ia.NLProcessorComponent"
+      }
+    ],
+    "_class": "cl.yai.amandaia.web.model.AIASemanticGraph"
+  }

@@ -1,0 +1,7 @@
+root,nsubj,amod,buscar wh40k
+warhammer,modo,None,True
+None,modo,None,False
+modo,None,None,False
+modo,modo,None,False
+space,modo,warhammer,True
+space,warhammer,modo,True

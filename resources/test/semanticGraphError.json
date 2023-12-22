@@ -1,0 +1,65 @@
+{
+    "_id": "6579bbb3da05f45182402182",
+    "semanticTree": "-> marín/VERB (root)\n  -> warhammer/VERB (advcl)\n    -> modo/NOUN (obl)\n    -> smith/NOUN (nsubj)\n",
+    "dotFormat": "digraph  {\n  N_2 [label=\"warhammer/VERB-2\"];\n  N_1 [label=\"modo/NOUN-1\"];\n  N_4 [label=\"marín/VERB-4\"];\n  N_3 [label=\"smith/NOUN-3\"];\n  N_2 -> N_1 [label=\"obl\"];\n  N_2 -> N_3 [label=\"nsubj\"];\n  N_4 -> N_2 [label=\"advcl\"];\n}\n",
+    "formattedText": "[marín/VERB advcl>[warhammer/VERB obl>modo/NOUN nsubj>smith/NOUN]]",
+    "sentence": "modo warhammer smith marín",
+    "aiaMessageId": "6579babdb34fe17a9242599b",
+    "nodes": [
+      {
+        "originalText": "marín",
+        "tag": "VERB",
+        "index": "4",
+        "relationType": "root"
+      },
+      {
+        "originalText": "modo",
+        "tag": "NOUN",
+        "index": "1",
+        "relationType": "obl",
+        "parent": {
+          "originalText": "warhammer",
+          "tag": "VERB",
+          "index": "2"
+        },
+        "semanticNodeTree": "warhammer/VERB -> modo/NOUN (obl)"
+      },
+      {
+        "originalText": "warhammer",
+        "tag": "VERB",
+        "index": "2",
+        "relationType": "advcl",
+        "parent": {
+          "originalText": "marín",
+          "tag": "VERB",
+          "index": "4"
+        },
+        "semanticNodeTree": "marín/VERB -> warhammer/VERB (advcl)"
+      },
+      {
+        "originalText": "smith",
+        "tag": "NOUN",
+        "index": "3",
+        "relationType": "nsubj",
+        "parent": {
+          "originalText": "warhammer",
+          "tag": "VERB",
+          "index": "2"
+        },
+        "semanticNodeTree": "warhammer/VERB -> smith/NOUN (nsubj)"
+      }
+    ],
+    "classification": "MOD",
+    "head": {
+      "producer": "amanda-ia",
+      "creationDate": "2023-12-13T14:12:03.845Z",
+      "version": "0.0.1-SNAPSHOT"
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2023-12-13T14:12:03.845Z",
+        "name": "amanda-ia.NLProcessorComponent"
+      }
+    ],
+    "_class": "cl.yai.amandaia.web.model.AIASemanticGraph"
+  }
