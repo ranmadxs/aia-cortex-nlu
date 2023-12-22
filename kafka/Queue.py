@@ -110,9 +110,10 @@ class QueueProducer:
         self.send(objStr, callback_queue)
 
     def send(self, msg, callback_queue = None):
-        print(msg)
-        msg = str(msg)
-        self.producer.produce(self.topic, msg.rstrip(), callback=callback_queue)
+        msg_str = json.dumps(msg)
+        #msg_str = str(msg)
+        print(msg_str)
+        self.producer.produce(self.topic, msg_str, callback=callback_queue)
         self.producer.poll(0)
     
     def flush(self):

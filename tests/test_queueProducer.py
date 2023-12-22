@@ -1,23 +1,19 @@
 #https://api.cloudkarafka.com/
 import yaml
 from kafka.Queue import QueueConsumer, QueueProducer
+from logs.logs_cfg import getLogger
 import os
 from dotenv import load_dotenv
 load_dotenv()
 import json
-import logging
-import logging.config
 from aia_cortex_nlu import __version__
 
 currentPath = os.getcwd()
-with open(currentPath+"/resources/log_cfg.yaml", 'rt') as f:
-    configLog = yaml.safe_load(f.read())
-    logging.config.dictConfig(configLog)
-logger = logging.getLogger(__name__)
+logger = getLogger()
 
 def getSemanticGraph():
     logger.debug("Read message from file:")
-    testFile = currentPath + "/tests/semanticGraphExample.json"
+    testFile = currentPath + "/resources/test/sgWh40kN1.json"
     f = open(testFile)
     logger.debug(testFile)
     data = json.load(f)
@@ -29,6 +25,8 @@ def test_produce():
     topicProducer = os.environ['TEST_CLOUDKAFKA_TOPIC_PRODUCER']
     logger.info("Test Produce queue " + topicProducer)
     queueProducer = QueueProducer(topicProducer, __version__, "aia-cortex-nlu")
-    data = json.dumps(getSemanticGraph())
-    queueProducer.send(data.replace("'", '\\"'))
+    data = getSemanticGraph()
+    #data = json.dumps(data)
+    #data = data.replace("'", '\\"')
+    queueProducer.send(data)
     queueProducer.flush()
