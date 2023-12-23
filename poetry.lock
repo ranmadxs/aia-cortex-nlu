@@ -1,6 +1,6 @@
 [[package]]
 name = "aiohttp"
-version = "3.9.0"
+version = "3.9.1"
 description = "Async http client/server framework (asyncio)"
 category = "main"
 optional = false
@@ -84,7 +84,7 @@ schema-registry = ["requests"]
 
 [[package]]
 name = "coverage"
-version = "7.3.2"
+version = "7.3.4"
 description = "Code coverage measurement for Python"
 category = "main"
 optional = false
@@ -95,7 +95,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "frozenlist"
-version = "1.4.0"
+version = "1.4.1"
 description = "A list-like structure which implements collections.abc.MutableSequence"
 category = "main"
 optional = false
@@ -103,7 +103,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "idna"
-version = "3.4"
+version = "3.6"
 description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
@@ -383,7 +383,7 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "yarl"
-version = "1.9.3"
+version = "1.9.4"
 description = "Yet another URL library"
 category = "main"
 optional = false
@@ -395,8 +395,8 @@ multidict = ">=4.0"
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.11.4,<3.12"
-content-hash = "c6cf605177fc40c1a84225a2ab2f8815011785ee7ee52412411c651132b1c4b6"
+python-versions = ">=3.11.2,<3.12"
+content-hash = "6847ac44073ffb12809baeb5ee4c6e1bc6190cc7e7a062e589e11141f7704359"
 
 [metadata.files]
 aiohttp = []

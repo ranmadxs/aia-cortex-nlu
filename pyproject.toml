@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Natural Language"
 authors = ["Edgar Rodrigo Sanchez De Gracia <edgr.sanchez@mercadolibre.cl>"]
 readme = "README.md"
-packages = [{include = "aia_cortex_nlu"}]
+packages = [{include = "aia_cortex_nlu"}, {include = "kafka"}, {include = "logs"}, {include = "repositories"}]
 
 [tool.poetry.dependencies]
 python = ">=3.11.2,<3.12"
