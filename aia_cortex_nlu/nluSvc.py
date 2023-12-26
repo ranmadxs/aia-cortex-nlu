@@ -7,7 +7,10 @@ load_dotenv()
 #driver = webdriver.Firefox()
 from kafka.Queue import QueueConsumer, QueueProducer
 from .id3Svc import id3, pretty_print_tree, predict, evaluate
-from logs.logs_cfg import getLogger
+from logs.logs_cfg import config_logger
+import logging
+from .nlp.nlp_processor import NLPProcessor
+import traceback 
 
 class NLUService:
 
@@ -16,20 +19,27 @@ class NLUService:
         self.topic_producer = topic_producer
         self.queueProducer = QueueProducer(self.topic_producer, version, "aia-cortex-nlu")
         self.version = version
-        self.logger = getLogger()
+        self.nlpProcessor = NLPProcessor()
+        config_logger()
+        self.logger = logging.getLogger(__name__)
 
     def kafkaListener(self):
         #queueConsumer = QueueConsumer(os.environ['CLOUDKARAFKA_TOPIC'])
         queueConsumer = QueueConsumer(self.topic_consumer)
         queueConsumer.listen(self.callback)
 
-    def callback(self, aiaSemanticGraph):
+    def callback(self, aiaMessage: any):
         text = "Llegó un mensaje!"
         print(text)
         #print(str(aiaSemanticGraph))
+        self.logger.info("Process message Aia Message")
+        aiaSemanticGraph = self.nlpProcessor.process(aiaMessage)
+        self.logger.debug(aiaSemanticGraph)
+        self.logger.info("Process message Aia Semmantic Graph")
         results = self.process_all(aiaSemanticGraph)
-
+        
         for result in results:
+            self.logger.info(f"Process {result['body']['cmd']} [{result['result']}]")   
             if(result["result"] == True):
                 self.logger.info("Send message to queue " + self.topic_producer)
                 self.logger.debug(result['body'])
@@ -46,7 +56,10 @@ class NLUService:
 
     def getRecursiveChildNode(self, nodes: List, parentIndex: int) -> List:
         respNodes = []
-        childNodes = list(filter(lambda node: node.__contains__('parent') and node['parent']['index'] == parentIndex, nodes))
+        childNodes = list(filter(lambda node: node.__contains__('parent') 
+                                 and node['parent'] is not None
+                                 and "index" in node['parent']
+                                 and node['parent']['index'] == parentIndex, nodes))
         if (len(childNodes) > 0) :
             for child in childNodes:
                 recChilds = self.getRecursiveChildNode(nodes, child['index'])
@@ -56,7 +69,7 @@ class NLUService:
 
 
     def buildDataTest(self, listNodes: List) -> List:
-        rootNode = list(filter(lambda node: node['relationType'] == "root", listNodes))
+        rootNode = list(filter(lambda node: node['relationType'].lower() == "root", listNodes))
         nodeIdx = rootNode[0]['index']
         listChilds = self.getRecursiveChildNode(listNodes, nodeIdx)
         listChilds.reverse()
@@ -74,12 +87,14 @@ class NLUService:
             results.append(result)
         except Exception as e:
             self.logger.error("Error process_all(EmailRead): " + str(e))
+            traceback.print_exc() 
         try:
             result = self.process(aiaSemanticGraph, "resources/WH40K.csv")
             result['body']['cmd'] = 'WH40K'
             results.append(result)
         except Exception as e:
             self.logger.error("Error process_all(WH40K): " + str(e))
+            traceback.print_exc() 
         return results
 
     def process(self, aiaSemanticGraph, csv):
@@ -103,6 +118,7 @@ class NLUService:
         #filtered_arr = [node for node in aiaSemanticGraph['nodes'] if node.relationType == "root"]
 
         #print("-------------rootNode---------------------------")
+        self.logger.debug(aiaSemanticGraph['nodes'])
         aiaDataTest = self.buildDataTest(aiaSemanticGraph['nodes'])
         '''
         dataTest = {

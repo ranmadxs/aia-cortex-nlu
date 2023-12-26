@@ -18,6 +18,9 @@ python-dotenv = "^1.0.0"
 pyyaml = "^6.0.1"
 numpy = "^1.26.2"
 coverage = "^7.3.2"
+spacy = "^3.7.2"
+es-core-news-sm = {url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"}
+nltk = "^3.8.1"
 
 [tool.pytest.ini_options]
 pythonpath = "aia_cortex_nlu"

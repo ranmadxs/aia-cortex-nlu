@@ -2,6 +2,8 @@ import os
 from pymongo import MongoClient
 from datetime import datetime
 from dotenv import load_dotenv
+from aia_cortex_nlu.model import AIASemanticGraph
+
 load_dotenv()
 
 class AIASemanticGraphRepository:
@@ -12,6 +14,6 @@ class AIASemanticGraphRepository:
     self.aiaDB = connectiondmr["aia-db"]
 
 
-  def update(self, aiaMessage):
-      _id = self.aiaDB["aIASemanticGraph"].insert_one(aiaMessage)
-      return _id.inserted_id
+  def save(self, aiaSemanticGraph: AIASemanticGraph):
+      _id = self.aiaDB["aIASemanticGraph"].insert_one(aiaSemanticGraph.dict())
+      return str(_id.inserted_id)

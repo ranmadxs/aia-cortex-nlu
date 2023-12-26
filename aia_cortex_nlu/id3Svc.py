@@ -321,6 +321,9 @@ def id3(train_data_m, label):
     return tree, rootTree
 
 def predict(tree, instance):
+    print("TREEEEEEEEEEEEEEEEEEE")
+    print(tree)
+    print(instance)
     if not isinstance(tree, dict): #if it is leaf node
         return tree #return the value
     else:

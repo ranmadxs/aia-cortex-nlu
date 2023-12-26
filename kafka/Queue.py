@@ -105,14 +105,18 @@ class QueueProducer:
         }
         return objMessage
 
+    # Define a custom function to serialize datetime objects 
+    def serialize_datetime(self, obj): 
+        if isinstance(obj, datetime): 
+            return obj.isoformat() 
+        raise TypeError("Type not serializable") 
+
     def sendMsg(self, bodyObject, callback_queue = None):
         objStr = self.msgBuilder(bodyObject)
         self.send(objStr, callback_queue)
 
     def send(self, msg, callback_queue = None):
-        msg_str = json.dumps(msg)
-        #msg_str = str(msg)
-        print(msg_str)
+        msg_str = json.dumps(msg, default=self.serialize_datetime)
         self.producer.produce(self.topic, msg_str, callback=callback_queue)
         self.producer.poll(0)
     

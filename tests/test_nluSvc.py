@@ -2,19 +2,18 @@
 import json
 import os
 #import aia_cortex_nlu.nluSvc
-import logging
-import logging.config
 from aia_cortex_nlu.nluSvc import NLUService
 import yaml
 from dotenv import load_dotenv
 from aia_cortex_nlu import __version__
 load_dotenv()
+from logs.logs_cfg import config_logger
+import logging
+config_logger()
+logger = logging.getLogger(__name__)
+
 
 currentPath = os.getcwd()
-with open(currentPath+"/resources/log_cfg.yaml", 'rt') as f:
-    configLog = yaml.safe_load(f.read())
-    logging.config.dictConfig(configLog)
-logger = logging.getLogger(__name__)
 
 def getSemanticGraph(jsonFile: str):
     logger.debug("Read message from file:")
@@ -26,6 +25,23 @@ def getSemanticGraph(jsonFile: str):
     data = json.load(f)
     logger.debug(data)
     return data
+
+def getAiaMsg(jsonFile: str):
+    logger.info("Read message from file:")
+    f = open(jsonFile)
+    logger.debug(jsonFile)
+    data = json.load(f)
+    logger.debug(data)
+    return data
+
+#poetry run pytest tests/test_nluSvc.py::test_callback -s
+def test_callback():
+    logger.info("Test callback")
+    nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
+    aiamsg = getAiaMsg(currentPath+"/resources/test/msg001.json")
+    resp = nluSvc.callback(aiamsg)
+    logger.info(resp)
+
 
 #poetry run pytest tests/test_nluSvc.py::test_process_wh40k -s
 def test_process_wh40k():

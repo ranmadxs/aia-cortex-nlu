@@ -1,19 +1,21 @@
 #https://api.cloudkarafka.com/
 import yaml
 from kafka.Queue import QueueConsumer, QueueProducer
-from logs.logs_cfg import getLogger
 import os
 from dotenv import load_dotenv
 load_dotenv()
 import json
 from aia_cortex_nlu import __version__
-
+from logs.logs_cfg import config_logger
+import logging
+config_logger()
+logger = logging.getLogger(__name__)
 currentPath = os.getcwd()
-logger = getLogger()
+
 
 def getSemanticGraph():
     logger.debug("Read message from file:")
-    testFile = currentPath + "/resources/test/sgWh40kN1.json"
+    testFile = currentPath + "/resources/test/msg001.json"
     f = open(testFile)
     logger.debug(testFile)
     data = json.load(f)
