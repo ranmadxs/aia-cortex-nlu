@@ -179,7 +179,6 @@ spacy = ">=3.7.0,<3.8.0"
 [package.source]
 type = "url"
 url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"
-
 [[package]]
 name = "frozenlist"
 version = "1.4.1"
@@ -804,7 +803,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "0b3686a423c6d8917e276fa5d46d393438a85eff7efa1527a942ff7662d4d952"
+content-hash = "3a3c5bc6b28e1197b3f600a417813b39ca248bdca3330317227880b35d7be11a"
 
 [metadata.files]
 aiohttp = []

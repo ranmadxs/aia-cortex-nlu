@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "aia-cortex-nlu"
 version = "0.1.0"
-description = "Natural Language"
+description = "Natural Language Processor"
 authors = ["Edgar Rodrigo Sanchez De Gracia <edgr.sanchez@mercadolibre.cl>"]
 readme = "README.md"
 packages = [{include = "aia_cortex_nlu"}, {include = "kafka"}, {include = "logs"}, {include = "repositories"}]
 
 [tool.poetry.dependencies]
 python = ">=3.11.2,<3.12"
-wheel = "0.41.3"
 openai = "^0.28.1"
 confluent-kafka = "2.3.0"
 pymongo = "4.2.0"
