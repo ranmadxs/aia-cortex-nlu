@@ -6,6 +6,7 @@ import os
 
 def config_logger():
     currentPath = os.getcwd()
+    os.makedirs("target", exist_ok=True)
     with open(currentPath+"/resources/log_cfg.yaml", 'rt') as f:
         configLog = yaml.safe_load(f.read())
         logging.config.dictConfig(configLog)
