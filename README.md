@@ -25,7 +25,7 @@ docker docker build . --platform linux/arm64/v8 -t aia/aia-cortext-nlu:0.2.0
 sudo docker exec -ti aia_cortex_nlu bash
 
 #run
-docker run -d --rm -v /home/ranmadxs/aia/aia-cortex-nlu/target:/app/target --net=bridge --name aia_cortex_nlu --env-file .env aia/aia-cortext-nlu:0.2.0
+docker run -d --rm -e TZ=America/Santiago -v /home/ranmadxs/aia/aia-cortex-nlu/target:/app/target --net=bridge --name aia_cortex_nlu --env-file .env aia/aia-cortext-nlu:0.2.0
 ```
 
 ### Install Img
