@@ -12,11 +12,17 @@ git remote set-url origin git@github_ranmadxs:ranmadxs/aia-cortex-nlu.git
 
 ```console
 #build
-docker build . -t aia/aia-cortext-nlu:0.1.0 --platform linux/amd64
+docker build . -t aia/aia-cortext-nlu:0.2.0 --platform linux/amd64
 
 #go into docker container
 sudo docker exec -ti aia_cortex_nlu bash
 
 #run
-docker run --rm -v /home/ranmadxs/aia/aia-cortex-nlu/logs:/app/target/logs --net=bridge --name aia_cortex_nlu --env-file .env aia/aia-cortext-nlu:0.1.0
+docker run --rm -v /home/ranmadxs/aia/aia-cortex-nlu/logs:/app/target/logs --net=bridge --name aia_cortex_nlu --env-file .env aia/aia-cortext-nlu:0.2.0
+```
+
+### Install Img
+
+```console
+docker save -o aia-cortex-nlu_0.2.0.tar aia/aia-cortext-nlu:0.1.0
 ```
