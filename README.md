@@ -1,18 +1,25 @@
+---
+runme:
+  id: 01HJQ7F9RYFAQG4NCAYG2PW00T
+  version: v2.0
+---
+
 # aia-cortex-nlu
+
 Natural Languague Understanding
-```console
+
+```console {"id":"01HJQ7F9RXZBJJ4YEQA7Q49GYF"}
 poetry run daemon
 
 git ls-remote --get-url origin 
 git remote set-url origin git@github_ranmadxs:ranmadxs/aia-cortex-nlu.git
 ```
 
-
 ## Docker
 
-```console
+```console {"id":"01HJQ7F9RXZBJJ4YEQAAH1BXHZ"}
 #build
-docker build . -t aia/aia-cortext-nlu:0.2.0 --platform linux/amd64
+docker docker build . --platform linux/arm64/v8 -t aia/aia-cortext-nlu:0.2.0
 
 #go into docker container
 sudo docker exec -ti aia_cortex_nlu bash
@@ -23,6 +30,6 @@ docker run --rm -v /home/ranmadxs/aia/aia-cortex-nlu/logs:/app/target/logs --net
 
 ### Install Img
 
-```console
-docker save -o aia-cortex-nlu_0.2.0.tar aia/aia-cortext-nlu:0.1.0
+```console {"id":"01HJQ7F9RXZBJJ4YEQAAX4XA1Y"}
+docker save -o aia-cortex-nlu_0.2.0.tar aia/aia-cortext-nlu:0.2.0
 ```
