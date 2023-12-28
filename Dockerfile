@@ -1,11 +1,11 @@
-FROM thehale/python-poetry:1.7.1-py3.11-slim
-
-COPY pyproject.toml poetry.lock ./
-
+FROM python:3.11.7
 WORKDIR /app
 
-COPY . .
+RUN pip install --upgrade pip
+RUN pip install poetry
 
+COPY . .
+COPY pyproject.toml poetry.lock ./
 RUN poetry install
 
 CMD [ "poetry", "run", "daemon"]
