@@ -5,9 +5,9 @@ import os
 import json
 load_dotenv()
 #driver = webdriver.Firefox()
-from kafka.Queue import QueueConsumer, QueueProducer
+from aia_utils.Queue import QueueConsumer, QueueProducer
 from .id3Svc import id3, pretty_print_tree, predict, evaluate
-from logs.logs_cfg import config_logger
+from aia_utils.logs_cfg import config_logger
 import logging
 from .nlp.nlp_processor import NLPProcessor
 import traceback 
@@ -32,6 +32,10 @@ class NLUService:
         text = "Llegó un mensaje!"
         print(text)
         #print(str(aiaSemanticGraph))
+        if "body" not in aiaMessage:
+            self.logger.error("Message without body")
+            return
+        
         self.logger.info("Process message Aia Message")
         aiaSemanticGraph = self.nlpProcessor.process(aiaMessage)
         self.logger.debug(aiaSemanticGraph)

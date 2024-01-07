@@ -1,4 +1,4 @@
-from logs.logs_cfg import config_logger
+from aia_utils.logs_cfg import config_logger
 import logging
 import spacy
 import sys
@@ -9,7 +9,7 @@ from nltk.tree.prettyprinter import TreePrettyPrinter
 from io import StringIO
 from aia_cortex_nlu import __version__
 import datetime
-from repositories.aiaRepo import AIASemanticGraphRepository
+from aia_utils.repositories.aia_semantic_repo import AIASemanticGraphRepository
 import os
 
 class NLPProcessor:

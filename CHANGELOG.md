@@ -6,5 +6,6 @@ runme:
 
 # RELEASE
 
-0.2.0 First Version 28-dic-2023
+[0.2.0] First Version 28-dic-2023
+
 - Feature: Add Docker Config

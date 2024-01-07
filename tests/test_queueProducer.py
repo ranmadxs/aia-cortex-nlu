@@ -1,12 +1,12 @@
 #https://api.cloudkarafka.com/
 import yaml
-from kafka.Queue import QueueConsumer, QueueProducer
+from aia_utils.Queue import QueueConsumer, QueueProducer
 import os
 from dotenv import load_dotenv
 load_dotenv()
 import json
 from aia_cortex_nlu import __version__
-from logs.logs_cfg import config_logger
+from aia_utils.logs_cfg import config_logger
 import logging
 config_logger()
 logger = logging.getLogger(__name__)

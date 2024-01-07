@@ -1,4 +1,21 @@
 [[package]]
+name = "aia-utils"
+version = "0.1.6"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.11,<4.0"
+
+[package.dependencies]
+confluent-kafka = ">=2.3.0,<3.0.0"
+coverage = ">=7.3.2,<8.0.0"
+PyYAML = ">=6.0.1,<7.0.0"
+
+[package.source]
+type = "file"
+url = "../aia-utils/dist/aia_utils-0.1.6-py3-none-any.whl"
+
+[[package]]
 name = "aiohttp"
 version = "3.9.1"
 description = "Async http client/server framework (asyncio)"
@@ -148,7 +165,7 @@ schema-registry = ["requests"]
 
 [[package]]
 name = "coverage"
-version = "7.3.4"
+version = "7.4.0"
 description = "Code coverage measurement for Python"
 category = "main"
 optional = false
@@ -179,6 +196,7 @@ spacy = ">=3.7.0,<3.8.0"
 [package.source]
 type = "url"
 url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"
+
 [[package]]
 name = "frozenlist"
 version = "1.4.1"
@@ -739,7 +757,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "tzdata"
-version = "2023.3"
+version = "2023.4"
 description = "Provider of IANA time zone data"
 category = "main"
 optional = false
@@ -803,9 +821,12 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "3a3c5bc6b28e1197b3f600a417813b39ca248bdca3330317227880b35d7be11a"
+content-hash = "23204060914bcd6dc0f0c4c078624569329c68e9dc8aa816b18f47ae125a16eb"
 
 [metadata.files]
+aia-utils = [
+    {file = "aia_utils-0.1.6-py3-none-any.whl", hash = "sha256:8ecb40b4e8e499b843df6fbe137c765240011dedf78351dcddafdc31b2523f20"},
+]
 aiohttp = []
 aiosignal = []
 annotated-types = []
