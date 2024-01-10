@@ -1,4 +1,20 @@
 [[package]]
+name = "aia-utils"
+version = "0.1.8"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.11,<4.0"
+
+[package.dependencies]
+confluent-kafka = ">=2.3.0,<3.0.0"
+coverage = ">=7.3.2,<8.0.0"
+html2image = ">=2.0.4,<3.0.0"
+pillow = ">=10.2.0,<11.0.0"
+pymongo = ">=4.6.1,<5.0.0"
+PyYAML = ">=6.0.1,<7.0.0"
+
+[[package]]
 name = "aiohttp"
 version = "3.9.1"
 description = "Async http client/server framework (asyncio)"
@@ -37,7 +53,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "attrs"
-version = "23.1.0"
+version = "23.2.0"
 description = "Classes Without Boilerplate"
 category = "main"
 optional = false
@@ -48,7 +64,8 @@ cov = ["attrs", "coverage[toml] (>=5.3)"]
 dev = ["attrs", "pre-commit"]
 docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
 tests = ["attrs", "zope-interface"]
-tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pytest-mypy-plugins", "pytest-xdist", "pytest (>=4.3.0)"]
+tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
+tests-no-zope = ["attrs", "cloudpickle", "hypothesis", "pympler", "pytest-xdist", "pytest (>=4.3.0)"]
 
 [[package]]
 name = "blis"
@@ -148,7 +165,7 @@ schema-registry = ["requests"]
 
 [[package]]
 name = "coverage"
-version = "7.3.4"
+version = "7.4.0"
 description = "Code coverage measurement for Python"
 category = "main"
 optional = false
@@ -164,6 +181,22 @@ description = "Manage calls to calloc/free through Cython"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "dnspython"
+version = "2.4.2"
+description = "DNS toolkit"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.extras]
+doq = ["aioquic (>=0.9.20)"]
+dnssec = ["cryptography (>=2.6,<42.0)"]
+doh = ["h2 (>=4.1.0)", "httpcore (>=0.17.3)", "httpx (>=0.24.1)"]
+idna = ["idna (>=2.1,<4.0)"]
+trio = ["trio (>=0.14,<0.23)"]
+wmi = ["wmi (>=1.5.1,<2.0.0)"]
 
 [[package]]
 name = "es_core_news_sm"
@@ -186,6 +219,18 @@ description = "A list-like structure which implements collections.abc.MutableSeq
 category = "main"
 optional = false
 python-versions = ">=3.8"
+
+[[package]]
+name = "html2image"
+version = "2.0.4.3"
+description = "Package acting as a wrapper around the headless mode of existing web browsers to generate images from URLs and from HTML+CSS strings or files."
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+requests = "*"
+websocket-client = ">=1.0.0,<2.0.0"
 
 [[package]]
 name = "idna"
@@ -284,7 +329,7 @@ twitter = ["twython"]
 
 [[package]]
 name = "numpy"
-version = "1.26.2"
+version = "1.26.3"
 description = "Fundamental package for array computing in Python"
 category = "main"
 optional = false
@@ -356,6 +401,22 @@ consortium-standard = ["dataframe-api-compat (>=0.1.7)"]
 all = ["beautifulsoup4 (>=4.11.1)", "bottleneck (>=1.3.4)", "dataframe-api-compat (>=0.1.7)", "fastparquet (>=0.8.1)", "fsspec (>=2022.05.0)", "gcsfs (>=2022.05.0)", "html5lib (>=1.1)", "hypothesis (>=6.46.1)", "jinja2 (>=3.1.2)", "lxml (>=4.8.0)", "matplotlib (>=3.6.1)", "numba (>=0.55.2)", "numexpr (>=2.8.0)", "odfpy (>=1.4.1)", "openpyxl (>=3.0.10)", "pandas-gbq (>=0.17.5)", "psycopg2 (>=2.9.3)", "pyarrow (>=7.0.0)", "pymysql (>=1.0.2)", "PyQt5 (>=5.15.6)", "pyreadstat (>=1.1.5)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)", "pytest-asyncio (>=0.17.0)", "pyxlsb (>=1.0.9)", "qtpy (>=2.2.0)", "scipy (>=1.8.1)", "s3fs (>=2022.05.0)", "SQLAlchemy (>=1.4.36)", "tables (>=3.7.0)", "tabulate (>=0.8.10)", "xarray (>=2022.03.0)", "xlrd (>=2.0.1)", "xlsxwriter (>=3.0.3)", "zstandard (>=0.17.0)"]
 
 [[package]]
+name = "pillow"
+version = "10.2.0"
+description = "Python Imaging Library (Fork)"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-removed-in", "sphinxext-opengraph"]
+fpx = ["olefile"]
+mic = ["olefile"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+typing = ["typing-extensions"]
+xmp = ["defusedxml"]
+
+[[package]]
 name = "pluggy"
 version = "1.3.0"
 description = "plugin and hook calling mechanisms for python"
@@ -408,24 +469,27 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pymongo"
-version = "4.2.0"
+version = "4.6.1"
 description = "Python driver for MongoDB <http://www.mongodb.org>"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[package.dependencies]
+dnspython = ">=1.16.0,<3.0.0"
+
 [package.extras]
 aws = ["pymongo-auth-aws (<2.0.0)"]
-encryption = ["pymongocrypt (>=1.3.0,<2.0.0)"]
-gssapi = ["pykerberos"]
-ocsp = ["pyopenssl (>=17.2.0)", "requests (<3.0.0)", "service-identity (>=18.1.0)", "certifi"]
+encryption = ["pymongo", "pymongocrypt (>=1.6.0,<2.0.0)", "certifi"]
+gssapi = ["pykerberos", "winkerberos (>=0.5.0)"]
+ocsp = ["pyopenssl (>=17.2.0)", "requests (<3.0.0)", "cryptography (>=2.5)", "service-identity (>=18.1.0)", "certifi"]
 snappy = ["python-snappy"]
-srv = ["dnspython (>=1.16.0,<3.0.0)"]
+test = ["pytest (>=7)"]
 zstd = ["zstandard"]
 
 [[package]]
 name = "pytest"
-version = "7.4.3"
+version = "7.4.4"
 description = "pytest: simple powerful testing with Python"
 category = "dev"
 optional = false
@@ -739,7 +803,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "tzdata"
-version = "2023.3"
+version = "2023.4"
 description = "Provider of IANA time zone data"
 category = "main"
 optional = false
@@ -789,6 +853,19 @@ typer = ">=0.3.0,<0.10.0"
 wasabi = ">=0.9.1,<1.2.0"
 
 [[package]]
+name = "websocket-client"
+version = "1.7.0"
+description = "WebSocket client for Python with low level API options"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+docs = ["Sphinx (>=6.0)", "sphinx-rtd-theme (>=1.1.0)"]
+optional = ["python-socks", "wsaccel"]
+test = ["websockets"]
+
+[[package]]
 name = "yarl"
 version = "1.9.4"
 description = "Yet another URL library"
@@ -803,9 +880,10 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "3a3c5bc6b28e1197b3f600a417813b39ca248bdca3330317227880b35d7be11a"
+content-hash = "d144bb7b9acad2170d4d9660acd914762c127cc25b3506971ec299c98cbe7004"
 
 [metadata.files]
+aia-utils = []
 aiohttp = []
 aiosignal = []
 annotated-types = []
@@ -821,8 +899,10 @@ confection = []
 confluent-kafka = []
 coverage = []
 cymem = []
+dnspython = []
 es_core_news_sm = []
 frozenlist = []
+html2image = []
 idna = []
 iniconfig = []
 jinja2 = []
@@ -836,6 +916,7 @@ numpy = []
 openai = []
 packaging = []
 pandas = []
+pillow = []
 pluggy = []
 preshed = []
 pydantic = []
@@ -865,4 +946,5 @@ tzdata = []
 urllib3 = []
 wasabi = []
 weasel = []
+websocket-client = []
 yarl = []

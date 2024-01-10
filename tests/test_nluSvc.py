@@ -7,7 +7,7 @@ import yaml
 from dotenv import load_dotenv
 from aia_cortex_nlu import __version__
 load_dotenv()
-from logs.logs_cfg import config_logger
+from aia_utils.logs_cfg import config_logger
 import logging
 config_logger()
 logger = logging.getLogger(__name__)

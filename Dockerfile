@@ -1,9 +1,8 @@
-FROM python:3.11.7
+FROM keitarodxs/aia:aia-utils_0.1.6
 WORKDIR /app
 
 RUN pip install --upgrade pip
 RUN pip install poetry
-
 COPY . .
 COPY pyproject.toml poetry.lock ./
 RUN poetry install

@@ -6,5 +6,10 @@ runme:
 
 # RELEASE
 
-0.2.0 First Version 28-dic-2023
+[0.2.2] 10-ene-2024
+
+- Hotfix: npl processor
+
+[0.2.0] First Version 28-dic-2023
+
 - Feature: Add Docker Config
