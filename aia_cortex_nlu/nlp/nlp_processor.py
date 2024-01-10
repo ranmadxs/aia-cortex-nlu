@@ -11,6 +11,7 @@ from aia_cortex_nlu import __version__
 import datetime
 from aia_utils.repositories.aia_semantic_repo import AIASemanticGraphRepository
 import os
+from spacy import displacy
 
 class NLPProcessor:
     def __init__(self) -> None:
@@ -61,6 +62,8 @@ class NLPProcessor:
         id = None
         listNodes = []
         text = aiaMsg['body']['cmd']
+        if text[-1] != ".":
+            text += "."
         classification = aiaMsg['body']['classification']
 
         if "id" in aiaMsg:
@@ -68,22 +71,38 @@ class NLPProcessor:
         if "_id" in aiaMsg:
             id = aiaMsg['_id']
         nluSG = self.nlp(text)
-        print(nluSG.to_json())
+        self.logger.debug(nluSG.to_json())
         semanticTree = None
         dotFormat = None
+        self.logger.info(type(nluSG.sents))
+        arraySents = []
         for sent in nluSG.sents:
-            print("=========================================")
-            #print(sent)
-            semanticTree = self.showTree(sent.root)
-            #print("")
-            dotFormat = self.to_nltk_tree(sent.root)
+            print("====sents=====")
+            self.logger.info(type(sent))
+            self.logger.debug(sent)
+            self.logger.debug(sent.root)
+            arraySents.append(sent)
+        print(">>>>>>>>>>>>>>> TOKENS <<<<<<<<<<<<<<<<<")
+        print([f"{token.text} tag:{token.pos_} index:{token.i} {token.dep_}" for token in nluSG])
+        #displacy.serve(nluSG, style="dep", port=8082)
+        semanticTree = ""
+        dotFormat = ""
+        for sent in nluSG.sents:
+            #self.logger.info(type(sent.root))
+            #self.logger.debug(sent)
+            semanticTree = str(semanticTree) + str(self.showTree(sent.root))
             textToPrint = ""
             streamPrint = StringIO(textToPrint)
-            self.to_nltk_tree(sent.root).pretty_print(stream=streamPrint)
-            dotFormat = streamPrint.getvalue()
-            print(dotFormat)
-            print("=========================================")
-        
+            nltk_tree = self.to_nltk_tree(sent.root)
+            if isinstance(nltk_tree, str):
+                #print(dir(sent.sent))
+                dotFormat = f"{dotFormat} {sent.text}"
+            else:
+                self.to_nltk_tree(sent.root).pretty_print(stream=streamPrint)
+                dotFormat = f"{dotFormat} {streamPrint.getvalue()}"
+        print("=========================================")
+        print(semanticTree)
+        print(dotFormat)
         for nluDoc in nluSG:
             #print("-----------------------------------------")
             #print(f"{type(nluDoc)}", nluDoc.text, nluDoc.pos_, nluDoc.dep_, nluDoc.i)

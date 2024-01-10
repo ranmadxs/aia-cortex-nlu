@@ -33,7 +33,7 @@ docker push keitarodxs/aia:$AIA_TAG_NLU
 sudo docker exec -ti aia_cortex_nlu bash
 
 #run
-docker run -d --rm -e TZ=America/Santiago -v /home/ranmadxs/aia/aia-cortex-nlu/target:/app/target --net=bridge --name aia_cortex_nlu --env-file .env keitarodxs/aia:$AIA_TAG_NLU
+docker run -d --restart=always -e TZ=America/Santiago -v /home/ranmadxs/aia/aia-cortex-nlu/target:/app/target --net=bridge --name aia_cortex_nlu --env-file .env keitarodxs/aia:$AIA_TAG_NLU
 ```
 
 ### Install Img

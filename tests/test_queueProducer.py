@@ -16,6 +16,7 @@ currentPath = os.getcwd()
 def getSemanticGraph():
     logger.debug("Read message from file:")
     testFile = currentPath + "/resources/test/msg001.json"
+    testFile = currentPath + "/resources/test/ancient.json"
     f = open(testFile)
     logger.debug(testFile)
     data = json.load(f)
