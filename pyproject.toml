@@ -20,6 +20,8 @@ spacy = "^3.7.2"
 es-core-news-sm = {url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"}
 nltk = "^3.8.1"
 aia-utils = "^0.1.8"
+graphviz = "^0.20.1"
+pydot = "^2.0.0"
 
 [tool.pytest.ini_options]
 pythonpath = "aia_cortex_nlu"

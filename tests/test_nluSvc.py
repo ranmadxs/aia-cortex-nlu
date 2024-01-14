@@ -11,7 +11,7 @@ from aia_utils.logs_cfg import config_logger
 import logging
 config_logger()
 logger = logging.getLogger(__name__)
-
+import pandas as pd #for manipulating the csv data
 
 currentPath = os.getcwd()
 
@@ -34,11 +34,19 @@ def getAiaMsg(jsonFile: str):
     logger.debug(data)
     return data
 
+#poetry run pytest tests/test_nluSvc.py::test_algebra -s
+def test_algebra():
+    logger.info("Test algebra")
+    nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
+    train_data_m = pd.read_csv("resources/WH40K.csv") 
+    nluSvc.propositionAlgebraTree(train_data_m)
+
 #poetry run pytest tests/test_nluSvc.py::test_callback -s
 def test_callback():
     logger.info("Test callback")
     nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
-    aiamsg = getAiaMsg(currentPath+"/resources/test/msg001.json")
+    aiamsg = getAiaMsg(currentPath+"/resources/test/message/wh40k_vyper.json")
+    #aiamsg = getAiaMsg(currentPath+"/resources/test/message/email01.json")
     resp = nluSvc.callback(aiamsg)
     logger.info(resp)
 

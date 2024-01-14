@@ -1,0 +1,25 @@
+{
+    "_id": "659e1b281863be02dc3a7af2",
+    "head": {
+      "producer": "aia-language-speech_reconigtion",
+      "creationDate": "2024-01-10 01:20:56",
+      "version": "0.1.1"
+    },
+    "body": {
+      "cmd": "modo warhammer space marine rino",
+      "msg": "Ella manda modo warhammer Space marine rino",
+      "classification": "MOD",
+      "isAia": true
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2024-01-10 01:20:56",
+        "name": "aia-language-speech_reconigtion"
+      }
+    ],
+    "status": {
+      "creationDate": "2024-01-10 01:20:56",
+      "code": "SEND",
+      "description": "AIA new message arrived"
+    }
+  }

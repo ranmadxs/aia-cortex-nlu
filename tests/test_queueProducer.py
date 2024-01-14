@@ -15,8 +15,11 @@ currentPath = os.getcwd()
 
 def getSemanticGraph():
     logger.debug("Read message from file:")
-    testFile = currentPath + "/resources/test/msg001.json"
-    testFile = currentPath + "/resources/test/ancient.json"
+    testFile = currentPath + "/resources/test/message/wh40k_sm.json"
+    testFile = currentPath + "/resources/test/message/wh40k_ancient.json"
+    testFile = currentPath + "/resources/test/message/wh40k_rhino.json"
+    testFile = currentPath + "/resources/test/message/wh40k_vyper.json"
+    testFile = currentPath + "/resources/test/message/wh40k_predator.json"
     f = open(testFile)
     logger.debug(testFile)
     data = json.load(f)

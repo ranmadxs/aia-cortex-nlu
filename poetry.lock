@@ -1,6 +1,6 @@
 [[package]]
 name = "aia-utils"
-version = "0.1.8"
+version = "0.1.9"
 description = ""
 category = "main"
 optional = false
@@ -212,6 +212,7 @@ spacy = ">=3.7.0,<3.8.0"
 [package.source]
 type = "url"
 url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"
+
 [[package]]
 name = "frozenlist"
 version = "1.4.1"
@@ -219,6 +220,19 @@ description = "A list-like structure which implements collections.abc.MutableSeq
 category = "main"
 optional = false
 python-versions = ">=3.8"
+
+[[package]]
+name = "graphviz"
+version = "0.20.1"
+description = "Simple Python interface for Graphviz"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+dev = ["tox (>=3)", "flake8", "pep8-naming", "wheel", "twine"]
+docs = ["sphinx (>=5)", "sphinx-autodoc-typehints", "sphinx-rtd-theme"]
+test = ["pytest (>=7)", "pytest-mock (>=3)", "mock (>=4)", "pytest-cov", "coverage"]
 
 [[package]]
 name = "html2image"
@@ -250,7 +264,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "jinja2"
-version = "3.1.2"
+version = "3.1.3"
 description = "A very fast and expressive template engine."
 category = "main"
 optional = false
@@ -353,6 +367,18 @@ datalib = ["numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (
 dev = ["black (>=21.6b0,<22.0.0)", "pytest (>=6.0.0,<7.0.0)", "pytest-asyncio", "pytest-mock"]
 embeddings = ["scikit-learn (>=1.0.2)", "tenacity (>=8.0.1)", "matplotlib", "plotly", "numpy", "scipy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
 wandb = ["wandb", "numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
+
+[[package]]
+name = "p-decision-tree"
+version = "0.0.3"
+description = "Visual Decision Tree Based on Categorical Attributes Package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+graphviz = "*"
+pandas = "*"
 
 [[package]]
 name = "packaging"
@@ -468,6 +494,22 @@ python-versions = ">=3.7"
 typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
+name = "pydot"
+version = "2.0.0"
+description = "Python interface to Graphviz's Dot"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+pyparsing = ">=3"
+
+[package.extras]
+dev = ["chardet", "black"]
+release = ["zest.releaser"]
+tests = ["chardet", "black", "tox"]
+
+[[package]]
 name = "pymongo"
 version = "4.6.1"
 description = "Python driver for MongoDB <http://www.mongodb.org>"
@@ -486,6 +528,17 @@ ocsp = ["pyopenssl (>=17.2.0)", "requests (<3.0.0)", "cryptography (>=2.5)", "se
 snappy = ["python-snappy"]
 test = ["pytest (>=7)"]
 zstd = ["zstandard"]
+
+[[package]]
+name = "pyparsing"
+version = "3.1.1"
+description = "pyparsing module - Classes and methods to define and execute parsing grammars"
+category = "main"
+optional = false
+python-versions = ">=3.6.8"
+
+[package.extras]
+diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
 name = "pytest"
@@ -880,7 +933,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "d144bb7b9acad2170d4d9660acd914762c127cc25b3506971ec299c98cbe7004"
+content-hash = "bcba131aabf5782ed27b740c708c974f3f5010d21f596155d332c75b724d76de"
 
 [metadata.files]
 aia-utils = []
@@ -902,6 +955,7 @@ cymem = []
 dnspython = []
 es_core_news_sm = []
 frozenlist = []
+graphviz = []
 html2image = []
 idna = []
 iniconfig = []
@@ -914,6 +968,7 @@ murmurhash = []
 nltk = []
 numpy = []
 openai = []
+p-decision-tree = []
 packaging = []
 pandas = []
 pillow = []
@@ -921,7 +976,9 @@ pluggy = []
 preshed = []
 pydantic = []
 pydantic-core = []
+pydot = []
 pymongo = []
+pyparsing = []
 pytest = []
 pytest-cov = []
 pytest-dotenv = []

@@ -3,9 +3,48 @@ import csv
 import sys
 import math
 import os
+from aia_cortex_nlu.nlp.p_decision_tree import DecisionTree
 
 import pandas as pd #for manipulating the csv data
 import numpy as np #for mathematical calculation
+from aia_utils.logs_cfg import config_logger
+import logging
+config_logger()
+logger = logging.getLogger(__name__)
+
+def get_decision_tree_graph(dataTest, train_data_m, directory: str = 'target', filename: str='visualTree'):
+    logger.info("Test Decision Tree")
+    data = train_data_m
+    columns = data.columns
+    logger.debug(columns)
+    #All columns except the last one are descriptive by default
+    descriptive_features = columns[:-1]
+    #The last column is considered as label
+    label = columns[-1]
+
+    #Converting all the columns to string
+    for column in columns:
+        data[column]= data[column].astype(str)
+    
+    data_descriptive = data[descriptive_features].values
+    data_label = data[label].values
+
+    print(f"data_descriptive= {data_descriptive}, data_label= {data_label}")
+
+    #Calling DecisionTree constructor (the last parameter is criterion which can also be "gini")
+    decisionTree = DecisionTree(data_descriptive.tolist(), descriptive_features.tolist(), data_label.tolist(), "entropy")
+    
+    #Here you can pass pruning features (gain_threshold and minimum_samples)
+    decisionTree.id3(0,0)
+
+    #Visualizing decision tree by Graphviz
+    dot = decisionTree.get_visualTree()
+    
+    print("System entropy: ", format(decisionTree.entropy))
+    print("System gini: ", format(decisionTree.gini))
+
+    return dot, decisionTree.entropy
+
 
 def load_csv_to_header_data(train_data_m):
     headers = train_data_m.keys().to_list()
