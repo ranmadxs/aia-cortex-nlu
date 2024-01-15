@@ -11,8 +11,7 @@ from graphviz import Digraph
 import traceback 
 from aia_utils.logs_cfg import config_logger
 import logging
-config_logger()
-logger = logging.getLogger(__name__)
+
 
 class Node(object):
     def __init__(self):
@@ -25,6 +24,8 @@ class Node(object):
 # Aimed for who want to learn Decision Tree, so it is not optimized
 class DecisionTree(object):
     def __init__(self, sample, attributes, labels, criterion):
+        config_logger()
+        self.logger = logging.getLogger(__name__)
         self.sample = sample
         self.attributes = attributes
         self.labels = labels
@@ -224,8 +225,14 @@ class DecisionTree(object):
                     child.next = self.id3Recv(childSampleIds, attributeIds.copy(), child.next, gain_threshold, minimum_samples)
         return root
 
-    def get_visualTree(self):
+    def _hasValue(self, listElements, value):
+        for child in listElements:
+            if child.value == value:
+                return True
+
+    def get_visualTree(self, dataTest = None):
         dot = Digraph(comment='Decision Tree')
+        dot.node_attr.update(color='lightblue2', style='filled')
         if self.root:
             self.root.name = "root"
             roots = deque()
@@ -233,14 +240,24 @@ class DecisionTree(object):
             counter = 0
             while len(roots) > 0:
                 root = roots.popleft()
-#                 print(root.value)
-                dot.node(root.name, root.value)
+                self.logger.debug(f"root: {root.name} = {root.value}")
+                childValue = None
+                if dataTest is not None and root.value in dataTest and self._hasValue(root.childs, dataTest[root.value]):
+                    childValue = dataTest[root.value]
+                    dot.node(root.name, root.value, style='filled', fillcolor='white', fontcolor='deeppink')
+                else:
+                    dot.node(root.name, root.value)
                 if root.childs:
                     for child in root.childs:
+                        hasChild = False
                         counter += 1
-#                         print('({})'.format(child.value))
+                        self.logger.debug(f"child: {child.name} = {child.value}")
                         child.name = str(random())
-                        dot.node(child.name, child.value)
+                        if child.value == childValue:
+                            hasChild = True
+                            dot.node(child.name, child.value, style='filled', fillcolor='deeppink', fontcolor='white')
+                        else:
+                            dot.node(child.name, child.value)
                         dot.edge(root.name,child.name)
                         if(child.next.childs):
                             child.next.name = str(random())
@@ -249,13 +266,17 @@ class DecisionTree(object):
                             roots.append(child.next)
                         else:
                             child.next.name = str(random())
-                            dot.node(child.next.name, child.next.value)
+                            if (hasChild):
+                                dot.node(child.next.name, child.next.value, style='filled', fillcolor='blue', fontcolor='white')
+                            else:
+                                dot.node(child.next.name, child.next.value)
                             dot.edge(child.name,child.next.name)
 
                 elif root.next:
                     dot.node(root.next, root.next)
                     dot.edge(root.value,root.next)
 #                     print(root.next)
+        
         #logger.debug(dot.source)
         #try:
         #    if render or view:

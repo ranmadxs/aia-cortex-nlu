@@ -30,7 +30,7 @@ docker build . --platform linux/arm64/v8 -t keitarodxs/aia:$AIA_TAG_NLU
 docker push keitarodxs/aia:$AIA_TAG_NLU
 
 #go into docker container
-sudo docker exec -ti aia_cortex_nlu bash
+docker exec -ti aia_cortex_nlu bash
 
 #run
 docker run -d --restart=always -e TZ=America/Santiago -v /home/ranmadxs/aia/aia-device/resources/images:/wh40k_images -v /home/ranmadxs/aia/aia-cortex-nlu/target:/app/target --net=bridge --name aia_cortex_nlu --env-file .env keitarodxs/aia:$AIA_TAG_NLU

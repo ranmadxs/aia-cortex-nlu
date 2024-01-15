@@ -133,8 +133,8 @@ class NLUService:
         dot, entropy = get_decision_tree_graph(
             dataTest=aiaDataTest, 
             train_data_m=train_data_m)
-        dot.render(view=False, format='png', directory=self.filePath, filename=f"{dt_name}.gv")
-        self.sendImgToDev(f"{dt_name}.gv")
+        dot.render(view=True, format='png', directory=self.filePath, filename=f"{dt_name}.gv")
+        self.sendImgToDev(f"{dt_name}.gv.png")
         '''
         dataTest = {
             'root': 'leer',

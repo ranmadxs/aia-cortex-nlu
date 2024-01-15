@@ -2,7 +2,7 @@ FROM keitarodxs/aia:aia-utils_0.1.8
 WORKDIR /app
 
 RUN apt-get update && apt-get -y install
-RUN apt-get install graphviz
+RUN apt-get install graphviz -y
 RUN pip install --upgrade pip
 
 RUN pip install poetry

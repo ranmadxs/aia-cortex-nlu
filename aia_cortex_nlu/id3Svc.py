@@ -38,7 +38,7 @@ def get_decision_tree_graph(dataTest, train_data_m, directory: str = 'target', f
     decisionTree.id3(0,0)
 
     #Visualizing decision tree by Graphviz
-    dot = decisionTree.get_visualTree()
+    dot = decisionTree.get_visualTree(dataTest)
     
     print("System entropy: ", format(decisionTree.entropy))
     print("System gini: ", format(decisionTree.gini))

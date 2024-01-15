@@ -6,6 +6,10 @@ runme:
 
 # RELEASE
 
+[0.3.1] 15-ene-2024
+
+- Add: Feature DecisionTree
+
 [0.2.2] 10-ene-2024
 
 - Hotfix: npl processor
