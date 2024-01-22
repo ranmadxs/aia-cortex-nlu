@@ -232,7 +232,8 @@ class DecisionTree(object):
 
     def get_visualTree(self, dataTest = None):
         dot = Digraph(comment='Decision Tree')
-        dot.node_attr.update(color='lightblue2', style='filled')
+        dot.node_attr.update(color='grey', style='filled')
+        resultPredict = None
         if self.root:
             self.root.name = "root"
             roots = deque()
@@ -251,11 +252,11 @@ class DecisionTree(object):
                     for child in root.childs:
                         hasChild = False
                         counter += 1
-                        self.logger.debug(f"child: {child.name} = {child.value}")
+                        #self.logger.debug(f"child: {child.name} = {child.value}")
                         child.name = str(random())
                         if child.value == childValue:
                             hasChild = True
-                            dot.node(child.name, child.value, style='filled', fillcolor='deeppink', fontcolor='white')
+                            dot.node(child.name, child.value, style='filled', fillcolor='lightgreen', fontcolor='white')
                         else:
                             dot.node(child.name, child.value)
                         dot.edge(root.name,child.name)
@@ -267,7 +268,11 @@ class DecisionTree(object):
                         else:
                             child.next.name = str(random())
                             if (hasChild):
-                                dot.node(child.next.name, child.next.value, style='filled', fillcolor='blue', fontcolor='white')
+                                resultPredict = child.next.value
+                                filcollor = "red"
+                                if resultPredict == 'True':
+                                    filcollor = 'lightblue'
+                                dot.node(child.next.name, child.next.value, style='filled', fillcolor=filcollor, fontcolor='white')
                             else:
                                 dot.node(child.next.name, child.next.value)
                             dot.edge(child.name,child.next.name)
@@ -284,4 +289,5 @@ class DecisionTree(object):
         #except:
         #    traceback.print_exc()
         #    print("You either have not installed the 'dot' to visualize the decision tree or the reulted .pdf file is open!")
-        return dot
+        #logging.info("resultPredict: " + resultPredict)
+        return dot, resultPredict == 'True'

@@ -18,8 +18,9 @@ def getSemanticGraph():
     testFile = currentPath + "/resources/test/message/wh40k_sm.json"
     testFile = currentPath + "/resources/test/message/wh40k_ancient.json"
     testFile = currentPath + "/resources/test/message/wh40k_rhino.json"
-    testFile = currentPath + "/resources/test/message/wh40k_vyper.json"
+   # testFile = currentPath + "/resources/test/message/wh40k_vyper.json"
    # testFile = currentPath + "/resources/test/message/wh40k_predator.json"
+    testFile = currentPath + "/resources/test/message/email01.json"
     f = open(testFile)
     logger.debug(testFile)
     data = json.load(f)

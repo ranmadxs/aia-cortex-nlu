@@ -1,18 +1,24 @@
 [[package]]
 name = "aia-utils"
-version = "0.1.9"
+version = "0.1.12"
 description = ""
 category = "main"
 optional = false
-python-versions = ">=3.11,<4.0"
+python-versions = "^3.11"
+develop = false
 
 [package.dependencies]
-confluent-kafka = ">=2.3.0,<3.0.0"
-coverage = ">=7.3.2,<8.0.0"
-html2image = ">=2.0.4,<3.0.0"
-pillow = ">=10.2.0,<11.0.0"
-pymongo = ">=4.6.1,<5.0.0"
-PyYAML = ">=6.0.1,<7.0.0"
+confluent-kafka = "^2.3.0"
+coverage = "^7.3.2"
+html2image = "^2.0.4"
+pillow = "^10.2.0"
+pymongo = "^4.6.1"
+PyYAML = "^6.0.1"
+tomli = "^2.0.1"
+
+[package.source]
+type = "directory"
+url = "../aia-utils"
 
 [[package]]
 name = "aiohttp"
@@ -184,19 +190,20 @@ python-versions = "*"
 
 [[package]]
 name = "dnspython"
-version = "2.4.2"
+version = "2.5.0"
 description = "DNS toolkit"
 category = "main"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = ">=3.8"
 
 [package.extras]
+dev = ["black (>=23.1.0)", "coverage (>=7.0)", "flake8 (>=5.0.3)", "mypy (>=1.0.1)", "pylint (>=2.7)", "pytest-cov (>=3.0.0)", "pytest (>=6.2.5)", "sphinx (>=7.0.0)", "twine (>=4.0.0)", "wheel (>=0.41.0)"]
+dnssec = ["cryptography (>=41)"]
+doh = ["h2 (>=4.1.0)", "httpcore (>=0.17.3)", "httpx (>=0.25.1)"]
 doq = ["aioquic (>=0.9.20)"]
-dnssec = ["cryptography (>=2.6,<42.0)"]
-doh = ["h2 (>=4.1.0)", "httpcore (>=0.17.3)", "httpx (>=0.24.1)"]
-idna = ["idna (>=2.1,<4.0)"]
-trio = ["trio (>=0.14,<0.23)"]
-wmi = ["wmi (>=1.5.1,<2.0.0)"]
+idna = ["idna (>=2.1)"]
+trio = ["trio (>=0.14)"]
+wmi = ["wmi (>=1.5.1)"]
 
 [[package]]
 name = "es_core_news_sm"
@@ -367,18 +374,6 @@ datalib = ["numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (
 dev = ["black (>=21.6b0,<22.0.0)", "pytest (>=6.0.0,<7.0.0)", "pytest-asyncio", "pytest-mock"]
 embeddings = ["scikit-learn (>=1.0.2)", "tenacity (>=8.0.1)", "matplotlib", "plotly", "numpy", "scipy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
 wandb = ["wandb", "numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
-
-[[package]]
-name = "p-decision-tree"
-version = "0.0.3"
-description = "Visual Decision Tree Based on Categorical Attributes Package"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-graphviz = "*"
-pandas = "*"
 
 [[package]]
 name = "packaging"
@@ -812,6 +807,14 @@ tensorflow = ["tensorflow (>=2.0.0,<2.6.0)"]
 torch = ["torch (>=1.6.0)"]
 
 [[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "tqdm"
 version = "4.66.1"
 description = "Fast, Extensible Progress Meter"
@@ -933,7 +936,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "bcba131aabf5782ed27b740c708c974f3f5010d21f596155d332c75b724d76de"
+content-hash = "63d9dc65326bf2c3de05586207af4e3b1a94708221cfb7223ce9dbcc56140b7e"
 
 [metadata.files]
 aia-utils = []
@@ -968,7 +971,6 @@ murmurhash = []
 nltk = []
 numpy = []
 openai = []
-p-decision-tree = []
 packaging = []
 pandas = []
 pillow = []
@@ -996,6 +998,7 @@ spacy-legacy = []
 spacy-loggers = []
 srsly = []
 thinc = []
+tomli = []
 tqdm = []
 typer = []
 typing-extensions = []

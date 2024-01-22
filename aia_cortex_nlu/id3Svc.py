@@ -38,12 +38,12 @@ def get_decision_tree_graph(dataTest, train_data_m, directory: str = 'target', f
     decisionTree.id3(0,0)
 
     #Visualizing decision tree by Graphviz
-    dot = decisionTree.get_visualTree(dataTest)
+    dot, resultPredict = decisionTree.get_visualTree(dataTest)
     
     print("System entropy: ", format(decisionTree.entropy))
     print("System gini: ", format(decisionTree.gini))
 
-    return dot, decisionTree.entropy
+    return dot, decisionTree.entropy, resultPredict
 
 
 def load_csv_to_header_data(train_data_m):
@@ -364,7 +364,10 @@ def predict(tree, instance):
         return tree #return the value
     else:
         root_node = next(iter(tree)) #getting first key/feature name of the dictionary
+        logger.debug(tree)
+        logger.debug(root_node)
         feature_value = instance[root_node] #value of the feature
+        logger.debug(f"if {feature_value} in {tree[root_node]}")
         if feature_value in tree[root_node]: #checking the feature value in current tree node
             return predict(tree[root_node][feature_value], instance) #goto next feature
         else:

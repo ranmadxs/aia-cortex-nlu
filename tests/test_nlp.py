@@ -25,7 +25,7 @@ def test_process_nlu():
     print("Process nlu")
     currentPath = os.getcwd()
     processor = NLPProcessor()
-    aiamsg = getAiaMsg(currentPath+"/resources/test/msg001.json")
+    aiamsg = getAiaMsg(currentPath+"/resources/test/message/wh40k_ancient.json")
     semanthicGraph = processor.process(aiamsg)
     logger.info(type(semanthicGraph))
     logger.debug(semanthicGraph)

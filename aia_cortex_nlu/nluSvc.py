@@ -11,7 +11,9 @@ from aia_utils.logs_cfg import config_logger
 import logging
 from .nlp.nlp_processor import NLPProcessor
 import traceback 
-
+from PIL import Image
+import base64
+from io import BytesIO
 
 class NLUService:
 
@@ -51,6 +53,7 @@ class NLUService:
                 self.logger.info("Send message to queue " + self.topic_producer)
                 self.logger.debug(result['body'])
                 self.queueProducer.send(result['body'])
+                self.sendImgToDev(f"{result['dt_name']}.gv.png")
                 #self.queueProducer.send({"body": {"cmd": "READ_YAHOO_MAIL"}})
                 self.queueProducer.flush()
 
@@ -75,7 +78,7 @@ class NLUService:
         return respNodes
 
 
-    def buildDataTest(self, listNodes: List) -> List:
+    def buildDataTest(self, listNodes: List, keys: List) -> List:
         rootNode = list(filter(lambda node: node['relationType'].lower() == "root", listNodes))
         nodeIdx = rootNode[0]['index']
         listChilds = self.getRecursiveChildNode(listNodes, nodeIdx)
@@ -84,6 +87,10 @@ class NLUService:
         dictResp = {}
         for node in rootNode:
             dictResp[node["relationType"]] = node["originalText"]
+        
+        for key in keys:
+            if key not in dictResp:
+                dictResp[key] = 'nan'
         return dictResp
 
     def process_all(self, aiaSemanticGraph) -> List:
@@ -114,14 +121,19 @@ class NLUService:
         print("#########################################")
         return tree, rootTree
 
-    def sendImgToDev(self, name: str):
-        self.queueDevice.send({"type": "image_resources", "origin": "resources/images", "name": name})
+    def sendImgToDev(self, name: str, format: str = "PNG"):
+        image = Image.open(f"{self.filePath}/{name}")
+        buffered = BytesIO()
+        image.save(buffered, format=format)
+        img_str = base64.b64encode(buffered.getvalue())
+        self.queueDevice.produce(img_str)
         self.queueDevice.flush()
 
     def process(self, aiaSemanticGraph, csv):
-        self.logger.info("Process NLU")
+        self.logger.info(f"############### Process NLU [{csv}] #####################")
         train_data_m = pd.read_csv(csv) #importing the dataset from the disk
         print(train_data_m.to_string()) #viewing some row of the dataset
+        print(train_data_m.keys().to_list())
         mainResultNode = train_data_m.keys().to_list()[-1]
         print(mainResultNode)
         tree, rootTree = self.propositionAlgebraTree(train_data_m)
@@ -129,37 +141,25 @@ class NLUService:
         dt_name = csv.split("/")[-1].split(".")[0]
         dt_name = ''.join(dt_name.split())
         self.logger.info("Process NLU: " + dt_name) 
-        aiaDataTest = self.buildDataTest(aiaSemanticGraph['nodes'])
-        dot, entropy = get_decision_tree_graph(
+        aiaDataTest = self.buildDataTest(aiaSemanticGraph['nodes'], train_data_m.keys().to_list())
+        dot, entropy, resultPredict = get_decision_tree_graph(
             dataTest=aiaDataTest, 
             train_data_m=train_data_m)
         dot.render(view=True, format='png', directory=self.filePath, filename=f"{dt_name}.gv")
-        self.sendImgToDev(f"{dt_name}.gv.png")
-        '''
-        dataTest = {
-            'root': 'leer',
-            'obj': 'noticias',
-            'nmod': 'yahoo',
-            'case': 'None',
-        }
-        resultPredict = predict(tree, dataTest)
-        print("------------------dataTest----------------------")
-        print(dataTest)
-        print(resultPredict)
-        '''
+        #self.sendImgToDev(f"{dt_name}.gv.png")
+
         print("----------------aiaDataTest------------------------")
-        resultPredict = predict(tree, aiaDataTest)
         print(aiaDataTest)
         print(aiaSemanticGraph["sentence"])
         print(resultPredict)
         print("-----------------------------------------------------")
         self.logger.debug(aiaSemanticGraph['nodes'])
-        accuracy = evaluate(tree, train_data_m, mainResultNode) #evaluating the test dataset
         print("")
-        print("accuracy: " + str(accuracy))
+        print("accuracy: " + str(entropy))
         return {"result": resultPredict, 
                 "dataTest": aiaDataTest, 
-                "accuracy": accuracy,
+                "accuracy": entropy,
+                "dt_name": dt_name,
                 "body": {"cmd":"", "semanticGraph": aiaSemanticGraph},
             }
         #quit() 

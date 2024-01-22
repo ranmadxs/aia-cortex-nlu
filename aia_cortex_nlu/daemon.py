@@ -12,17 +12,12 @@ logger = logging.getLogger(__name__)
 #config_logger()
 #logger = logging.getLogger(__name__)
 load_dotenv()
+from aia_utils.toml_utils import getVersion
 
 def run():
     """
     entry point
     """
-    parser = ArgumentParser(prog="daemon", description="cortex-nlu-daemon")
-    parser.add_argument(
-        "--version", action="version", version=f"%(prog)s {__version__}"
-    )
-    #parser.add_argument(dest="users", nargs=ONE_OR_MORE, type="User", help="your name")
-    #args = parser.parse_args()
-    logger.info("Start Daemon cortex NLU")
+    logger.info(f"Start Daemon cortex NLU v{getVersion()}")
     nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
     nluSvc.kafkaListener()
