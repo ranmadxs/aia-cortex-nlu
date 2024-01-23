@@ -11,6 +11,8 @@ Natural Languague Understanding
 ```sh {"id":"01HJQ7F9RXZBJJ4YEQA7Q49GYF"}
 poetry run daemon
 
+poetry cache clear pypi --all
+
 git ls-remote --get-url origin 
 git remote set-url origin git@github_ranmadxs:ranmadxs/aia-cortex-nlu.git
 
