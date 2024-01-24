@@ -1,9 +1,10 @@
-name: Docker Image CI
+name: Docker Image Publish
 
 on:
   push:
     tags:
       - "v*.*.*"
+
     
 jobs:
 
