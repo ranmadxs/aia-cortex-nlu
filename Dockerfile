@@ -1,7 +1,8 @@
-FROM keitarodxs/aia:aia-utils_0.1.8
+FROM keitarodxs/aia-utils:latest
+
 WORKDIR /app
 
-RUN apt-get update
+RUN apt-get update && apt-get -y install
 RUN apt-get install graphviz -y
 RUN pip install --upgrade pip
 
