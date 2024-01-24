@@ -7,6 +7,10 @@ runme:
 # RELEASE
 
 ```bash {"id":"01HKVAHXZRTNKPYDCW81RW4SHF"}
+[0.3.3] 24-ene-2024
+
+- Github Actions: add  docker build and push
+
 [0.3.2] 22-ene-2024
 
 - Add: Feature Sen img DecisionTree to Device
