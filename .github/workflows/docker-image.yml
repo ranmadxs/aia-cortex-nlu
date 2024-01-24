@@ -25,8 +25,8 @@ jobs:
       with:
           args: --docker
       env:
-          USERNAME: ${{ env.DOCKER_USERNAME }}
-          PASSWORD: ${{ env.DOCKER_PASSWORD }}
+          USERNAME: ${{ DOCKER_USERNAME }}
+          PASSWORD: ${{ DOCKER_PASSWORD }}
           TAG_NAME: ${{ env.RELEASE_VERSION }}
           BUILDX: "true"
           IMAGE_NAME: "keitarodxs/aia-cortext-nlu"
