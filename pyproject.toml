@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aia-cortex-nlu"
-version = "0.3.3"
+version = "0.3.4"
 description = "Natural Language Processor"
 authors = ["Edgar Rodrigo Sanchez De Gracia <grineldosanchez@yahoo.es>"]
 readme = "README.md"
