@@ -41,6 +41,16 @@ def test_algebra():
     train_data_m = pd.read_csv("resources/WH40K.csv") 
     nluSvc.propositionAlgebraTree(train_data_m)
 
+#poetry run pytest tests/test_nluSvc.py::test_callback_msg -s
+def test_callback_msg():
+    logger.info("Test test_callback_msg")
+    nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
+    aiamsg = getAiaMsg(currentPath+"/resources/test/message/cmd_encender_bomba.json")
+    #aiamsg = getAiaMsg(currentPath+"/resources/test/message/email01.json")
+    resp = nluSvc.callback(aiamsg)
+    logger.info(resp)
+
+
 #poetry run pytest tests/test_nluSvc.py::test_callback -s
 def test_callback():
     logger.info("Test callback")

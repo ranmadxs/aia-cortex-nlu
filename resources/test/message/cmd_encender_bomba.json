@@ -1,0 +1,25 @@
+{
+    "head":{
+       "producer":"aia_language_speech_reconigtion",
+       "creationDate":"2024-08-05 14:12:10",
+       "version":"0.1.1"
+    },
+    "body":{
+       "cmd":"enciende la bomba de agua del invernadero",
+       "msg":"Ella manda enciende la bomba de agua del invernadero",
+       "classification":"CMD",
+       "isAia":true
+    },
+    "breadcrumb":[
+       {
+          "creationDate":"2024-08-05 14:12:10",
+          "name":"aia_language_speech_reconigtion"
+       }
+    ],
+    "status":{
+       "creationDate":"2024-08-05 14:12:10",
+       "code":"SEND",
+       "description":"AIA new message arrived"
+    },
+    "_id":"66b115faa8d1c0830defdbff"
+ }
