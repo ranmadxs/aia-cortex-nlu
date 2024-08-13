@@ -7,14 +7,11 @@ runme:
 # RELEASE
 
 ```bash {"id":"01HKVAHXZRTNKPYDCW81RW4SHF"}
-[0.4.1] 05-ago-2024
+[0.4.2] 13-ago-2024
 
 - 🔄 Update: aia-utils ^=0.3.1
 - ✨ Add: nli & I.A. (transformers->pipeline-ner)
-
-[0.4.0] 05-ago-2024
-
-- 🔄 Update: aia-utils ^=0.2.1
+- 🔥 Hotfix: Fix install hdf5 lib in Dockerfile
 
 [0.3.4] 24-ene-2024
 
