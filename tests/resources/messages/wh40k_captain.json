@@ -1,0 +1,30 @@
+{
+    "_id": "658263e47311fb696dfdb0df",
+    "body": {
+      "cmd": "modo warhammer space marine captain",
+      "msg": "Ella manda modo warhammer space marine captain",
+      "isAia": true,
+      "classification": "CMD"
+    },
+    "status": {
+      "creationDate": "2023-12-20T03:51:21.023Z",
+      "code": "PROCESSED",
+      "description": "AIA Semantic Graph Generated"
+    },
+    "head": {
+      "producer": "aia-language-speech_reconigtion",
+      "creationDate": "2023-01-20T03:47:48.000Z",
+      "version": "0.1.1"
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2023-01-20T03:47:48.000Z",
+        "name": "aia-language-speech_reconigtion"
+      },
+      {
+        "creationDate": "2023-12-20T03:51:23.318Z",
+        "name": "amanda-ia.NLProcessorComponent"
+      }
+    ],
+    "_class": "cl.yai.amandaia.web.model.AIAMessage"
+  }

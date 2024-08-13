@@ -37,9 +37,8 @@ def test_process_genera_aia():
     print("Process genera aia")
     currentPath = os.getcwd()
     processor = NLPProcessor()
-    aiamsg = getAiaMsg(currentPath+"/resources/test/msg001.json")
+    aiamsg = getAiaMsg(currentPath+"/tests/resources/messages/email01.json")
     semanthicGraph = processor.generateAIASemanticGraph(aiamsg)
-
 
     logger.info(type(semanthicGraph))
     logger.debug(semanthicGraph)

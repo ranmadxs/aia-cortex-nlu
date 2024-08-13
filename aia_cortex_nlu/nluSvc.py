@@ -14,8 +14,11 @@ import traceback
 from PIL import Image
 import base64
 from io import BytesIO
+from .nliSvc import NaturalLanguageInferenceSvc
 
 class NLUService:
+
+    MIN_SCORE_ACURACY = 0.6
 
     def __init__(self, topic_producer, topic_consumer, version):
         self.topic_consumer = topic_consumer
@@ -27,6 +30,7 @@ class NLUService:
         self.queueDevice = QueueProducer(os.environ['CLOUDKAFKA_TOPIC_DEVICE_PRODUCER'], version, "aia-cortex-nlu")
         config_logger()
         self.logger = logging.getLogger(__name__)
+        self.nli = NaturalLanguageInferenceSvc()
 
     def kafkaListener(self):
         #queueConsumer = QueueConsumer(os.environ['CLOUDKARAFKA_TOPIC'])
@@ -45,17 +49,17 @@ class NLUService:
         aiaSemanticGraph = self.nlpProcessor.process(aiaMessage)
         self.logger.debug(aiaSemanticGraph)
         self.logger.info("Process message Aia Semmantic Graph")
-        results = self.process_all(aiaSemanticGraph)
+        result = self.process_all_v2(aiaSemanticGraph)
         
-        for result in results:
-            self.logger.info(f"Process {result['body']['cmd']} [{result['result']}]")   
-            if(result["result"] == True):
-                self.logger.info("Send message to queue " + self.topic_producer)
-                self.logger.debug(result['body'])
-                self.queueProducer.send(result['body'])
-                self.sendImgToDev(f"{result['dt_name']}.gv.png")
-                #self.queueProducer.send({"body": {"cmd": "READ_YAHOO_MAIL"}})
-                self.queueProducer.flush()
+        #for result in results:
+        self.logger.info(f"Process {result['body']['cmd']} [{result['result']}]")   
+        if(result["result"] == True):
+            self.logger.info("Send message to queue " + self.topic_producer)
+            self.logger.debug(result['body'])
+            self.queueProducer.send(result['body'])
+            #self.sendImgToDev(f"{result['dt_name']}.gv.png")
+            #self.queueProducer.send({"body": {"cmd": "READ_YAHOO_MAIL"}})
+            self.queueProducer.flush()
 
     def getChildNodes(self, node, parentIndex):
         if node.parent.index == parentIndex:
@@ -93,6 +97,16 @@ class NLUService:
                 dictResp[key] = 'nan'
         return dictResp
 
+    def process_all_v2(self, aiaSemanticGraph):
+        results = {}
+        try:
+            results = self.process_v2(aiaSemanticGraph)
+
+        except Exception as e:
+            self.logger.error("Error process_all(aiaSemanticGraph): " + str(e))
+            traceback.print_exc() 
+        return results
+    
     def process_all(self, aiaSemanticGraph) -> List:
         results = []
         try:
@@ -129,6 +143,24 @@ class NLUService:
         self.queueDevice.produce(img_str)
         self.queueDevice.flush()
 
+    def process_v2(self, aiaSemanticGraph):
+        self.logger.debug(f"############### Process NLU V2 #####################")
+        score = self.nli.bigScore(aiaSemanticGraph["sentence"])
+
+        #todo: en este lugar se debería imprimir el arbol semántico
+        result = False
+        self.logger.debug(score)
+        if (self.MIN_SCORE_ACURACY <= score["score"]):
+            result = True
+        return {
+            "result": result,
+            "dataTest": None,
+            "accuracy": score["score"],
+            "dt_name": score["code"],
+            "body": {"cmd": score["code"], "semanticGraph": aiaSemanticGraph},
+        }
+
+
     def process(self, aiaSemanticGraph, csv):
         self.logger.info(f"############### Process NLU [{csv}] #####################")
         train_data_m = pd.read_csv(csv) #importing the dataset from the disk
@@ -136,7 +168,7 @@ class NLUService:
         print(train_data_m.keys().to_list())
         mainResultNode = train_data_m.keys().to_list()[-1]
         print(mainResultNode)
-        tree, rootTree = self.propositionAlgebraTree(train_data_m)
+        #tree, rootTree = self.propositionAlgebraTree(train_data_m)
         print("###################PREDICT 02######################")
         dt_name = csv.split("/")[-1].split(".")[0]
         dt_name = ''.join(dt_name.split())

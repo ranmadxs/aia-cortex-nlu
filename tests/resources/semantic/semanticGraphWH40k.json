@@ -1,0 +1,77 @@
+{
+    "_id": "6579bbb7da05f45182402184",
+    "semanticTree": "-> warhammer/VERB (root)\n  -> modo/NOUN (nsubj)\n  -> space/NOUN (obj)\n    -> marine/ADJ (amod)\n    -> rhino/ADJ (amod)\n",
+    "dotFormat": "digraph  {\n  N_2 [label=\"warhammer/VERB-2\"];\n  N_1 [label=\"modo/NOUN-1\"];\n  N_3 [label=\"space/NOUN-3\"];\n  N_4 [label=\"marine/ADJ-4\"];\n  N_5 [label=\"rhino/ADJ-5\"];\n  N_2 -> N_1 [label=\"nsubj\"];\n  N_2 -> N_3 [label=\"obj\"];\n  N_3 -> N_4 [label=\"amod\"];\n  N_3 -> N_5 [label=\"amod\"];\n}\n",
+    "formattedText": "[warhammer/VERB\n  nsubj>modo/NOUN\n  obj>[space/NOUN amod>marine/ADJ amod>rhino/ADJ]]",
+    "sentence": "modo warhammer space marine rhino",
+    "aiaMessageId": "6579bad895b63ebcccefb4f3",
+    "nodes": [
+      {
+        "originalText": "warhammer",
+        "tag": "VERB",
+        "index": "2",
+        "relationType": "root"
+      },
+      {
+        "originalText": "modo",
+        "tag": "NOUN",
+        "index": "1",
+        "relationType": "nsubj",
+        "parent": {
+          "originalText": "warhammer",
+          "tag": "VERB",
+          "index": "2"
+        },
+        "semanticNodeTree": "warhammer/VERB -> modo/NOUN (nsubj)"
+      },
+      {
+        "originalText": "space",
+        "tag": "NOUN",
+        "index": "3",
+        "relationType": "obj",
+        "parent": {
+          "originalText": "warhammer",
+          "tag": "VERB",
+          "index": "2"
+        },
+        "semanticNodeTree": "warhammer/VERB -> space/NOUN (obj)"
+      },
+      {
+        "originalText": "marine",
+        "tag": "ADJ",
+        "index": "4",
+        "relationType": "amod",
+        "parent": {
+          "originalText": "space",
+          "tag": "NOUN",
+          "index": "3"
+        },
+        "semanticNodeTree": "space/NOUN -> marine/ADJ (amod)"
+      },
+      {
+        "originalText": "rhino",
+        "tag": "ADJ",
+        "index": "5",
+        "relationType": "amod",
+        "parent": {
+          "originalText": "space",
+          "tag": "NOUN",
+          "index": "3"
+        },
+        "semanticNodeTree": "space/NOUN -> rhino/ADJ (amod)"
+      }
+    ],
+    "classification": "CMD",
+    "head": {
+      "producer": "amanda-ia",
+      "creationDate": "2023-12-13T14:12:07.040Z",
+      "version": "0.0.1-SNAPSHOT"
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2023-12-13T14:12:07.040Z",
+        "name": "amanda-ia.NLProcessorComponent"
+      }
+    ],
+    "_class": "cl.yai.amandaia.web.model.AIASemanticGraph"
+  }

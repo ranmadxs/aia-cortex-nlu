@@ -48,7 +48,7 @@ def test_decision_tree():
     decisionTree.id3(0,0)
 
     #Visualizing decision tree by Graphviz
-    dot = decisionTree.get_visualTree()
+    dot, resultPredict = decisionTree.get_visualTree()
     dot.render(directory='target', view=True, format='png', filename='ejem_decision_tree.gv')
     # When using Jupyter
     #display( dot )

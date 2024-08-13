@@ -13,12 +13,12 @@ def test_treeGraph():
     trainData = pd.read_csv('resources/EmailRead.csv')
     trainData = pd.read_csv('resources/WH40K.csv')
     dataTest = {}
-    dot, entrop = get_decision_tree_graph(dataTest, trainData)
+    dot, entrop, resp = get_decision_tree_graph(dataTest, trainData)
     dot.render(view=True, format='png', directory='target', filename='test_treeGraph')
 
 #poetry run pytest tests/test_id3.py::test_treeGraph2DataTest -s
 def test_treeGraph2DataTest():
     trainData = pd.read_csv('resources/WH40K.csv')
-    dataTest = {'root': 'warhammer', 'obj': 'space', 'nsubj': 'modo', 'amod': 'marine'}
-    dot, entrop = get_decision_tree_graph(dataTest, trainData)
+    dataTest = {}
+    dot, entrop, resp = get_decision_tree_graph(dataTest, trainData)
     dot.render(view=True, format='png', directory='target', filename='test_treeGraph2.gv')

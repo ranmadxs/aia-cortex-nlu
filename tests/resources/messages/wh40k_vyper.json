@@ -1,0 +1,30 @@
+{
+    "_id": "6582639123e80234b6ea13ff",
+    "body": {
+      "cmd": "modo warhammer aeldari vyper",
+      "msg": "Hey Amanda modo warhammer aeldari vyper",
+      "isAia": true,
+      "classification": "CMD"
+    },
+    "status": {
+      "creationDate": "2023-12-20T03:51:23.369Z",
+      "code": "PROCESSED",
+      "description": "AIA Semantic Graph Generated"
+    },
+    "head": {
+      "producer": "aia-language-speech_reconigtion",
+      "creationDate": "2023-01-20T03:46:25.000Z",
+      "version": "0.1.1"
+    },
+    "breadcrumb": [
+      {
+        "creationDate": "2023-01-20T03:46:25.000Z",
+        "name": "aia-language-speech_reconigtion"
+      },
+      {
+        "creationDate": "2023-12-20T03:51:23.427Z",
+        "name": "amanda-ia.NLProcessorComponent"
+      }
+    ],
+    "_class": "cl.yai.amandaia.web.model.AIAMessage"
+  }
