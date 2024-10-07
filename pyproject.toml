@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aia-cortex-nlu"
-version = "0.4.2"
+version = "0.4.3"
 description = "Natural Language Processor"
 authors = ["Edgar Rodrigo Sanchez De Gracia <grineldosanchez@yahoo.es>"]
 readme = "README.md"
@@ -21,7 +21,6 @@ es-core-news-sm = {url = "https://github.com/explosion/spacy-models/releases/dow
 nltk = "^3.8.1"
 graphviz = "^0.20.1"
 pydot = "^2.0.0"
-tensorflow = "2.16.2"
 torch = "2.2.2"
 transformers = "4.42.0"
 accelerate = "^0.33.0"

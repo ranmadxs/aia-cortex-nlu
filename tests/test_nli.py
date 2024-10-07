@@ -57,6 +57,7 @@ def test_all_msgs():
             json_data = json.loads(text)
             score = nli.bigScore(json_data["body"]["cmd"])
             print(score)
+            
 # poetry run pytest tests/test_nli.py::test_ner -s
 def test_ner():
     print("Test NER")

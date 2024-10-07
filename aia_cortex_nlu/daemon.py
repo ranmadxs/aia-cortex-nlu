@@ -6,7 +6,11 @@ from dotenv import load_dotenv
 from aia_utils.logs_cfg import config_logger
 import logging
 config_logger()
+# Configura el nivel de logging para pymongo
+logging.getLogger("pymongo").setLevel(logging.ERROR)
+logging.getLogger("h5py").setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
+
 #from aia_utils.logs.logs_cfg import config_logger
 #import logging
 #config_logger()

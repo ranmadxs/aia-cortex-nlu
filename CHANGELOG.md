@@ -7,6 +7,9 @@ runme:
 # RELEASE
 
 ```bash {"id":"01HKVAHXZRTNKPYDCW81RW4SHF"}
+[0.4.3] 13-ago-2024
+- 🔥🗑️ Removing tensorflow. trasitive dep.
+
 [0.4.2] 13-ago-2024
 
 - 🔄 Update: aia-utils ^=0.3.1

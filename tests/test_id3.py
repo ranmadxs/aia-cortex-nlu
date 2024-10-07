@@ -5,7 +5,7 @@ config_logger()
 import pandas as pd
 
 logger = logging.getLogger(__name__)
-
+view_tree = False
 #poetry run pytest tests/test_id3.py::test_treeGraph -s
 def test_treeGraph():
     logger.info("Test Tree Graph")
@@ -14,11 +14,11 @@ def test_treeGraph():
     trainData = pd.read_csv('resources/WH40K.csv')
     dataTest = {}
     dot, entrop, resp = get_decision_tree_graph(dataTest, trainData)
-    dot.render(view=True, format='png', directory='target', filename='test_treeGraph')
+    dot.render(view=view_tree, format='png', directory='target', filename='test_treeGraph')
 
 #poetry run pytest tests/test_id3.py::test_treeGraph2DataTest -s
 def test_treeGraph2DataTest():
     trainData = pd.read_csv('resources/WH40K.csv')
     dataTest = {}
     dot, entrop, resp = get_decision_tree_graph(dataTest, trainData)
-    dot.render(view=True, format='png', directory='target', filename='test_treeGraph2.gv')
+    dot.render(view=view_tree, format='png', directory='target', filename='test_treeGraph2.gv')

@@ -11,7 +11,7 @@ import logging
 config_logger()
 logger = logging.getLogger(__name__)
 currentPath = os.getcwd()
-
+import pytest
 
 def getSemanticGraph():
     logger.debug("Read message from file:")
@@ -28,6 +28,7 @@ def getSemanticGraph():
     return data
 
 #poetry run pytest tests/test_queueProducer.py::test_produce -s
+#@pytest.mark.skip(reason="esta pensado para correr en local")
 def test_produce():
     topicProducer = os.environ['TEST_CLOUDKAFKA_TOPIC_PRODUCER']
     logger.info("Test Produce queue " + topicProducer)

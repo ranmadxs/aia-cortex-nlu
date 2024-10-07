@@ -8,9 +8,9 @@ from graphviz import Digraph
 import traceback 
 import pydot
 import json
+import pytest
 
 #brew install graphviz   -> apt get install graphviz
-
 
 #poetry run pytest tests/test_decision_tree.py::test_graphviz -s
 def test_graphviz():
@@ -49,7 +49,7 @@ def test_decision_tree():
 
     #Visualizing decision tree by Graphviz
     dot, resultPredict = decisionTree.get_visualTree()
-    dot.render(directory='target', view=True, format='png', filename='ejem_decision_tree.gv')
+    dot.render(directory='target', view=False, format='png', filename='ejem_decision_tree.gv')
     # When using Jupyter
     #display( dot )
     #try:

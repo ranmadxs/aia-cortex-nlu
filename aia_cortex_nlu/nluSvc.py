@@ -15,6 +15,7 @@ from PIL import Image
 import base64
 from io import BytesIO
 from .nliSvc import NaturalLanguageInferenceSvc
+from .nli.enum import NLI_LABELS
 
 class NLUService:
 
@@ -54,8 +55,10 @@ class NLUService:
         #for result in results:
         self.logger.info(f"Process {result['body']['cmd']} [{result['result']}]")   
         if(result["result"] == True):
-            self.logger.info("Send message to queue " + self.topic_producer)
+            topic_prod = NLI_LABELS.get_topic_by_enum_name(result['body']['cmd'])
+            self.logger.info("Send message to queue " + topic_prod)
             self.logger.debug(result['body'])
+            self.queueProducer.topic = topic_prod
             self.queueProducer.send(result['body'])
             #self.sendImgToDev(f"{result['dt_name']}.gv.png")
             #self.queueProducer.send({"body": {"cmd": "READ_YAHOO_MAIL"}})

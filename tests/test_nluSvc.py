@@ -56,8 +56,8 @@ def test_callback_msg():
 def test_callback():
     logger.info("Test callback")
     nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
-    #aiamsg = getAiaMsg(currentPath+"/resources/test/message/wh40k_vyper.json")
-    aiamsg = getAiaMsg(currentPath+"/tests/resources/messages/wh40k_captain.json")
+    aiamsg = getAiaMsg(currentPath+"/resources/test/message/wh40k_vyper.json")
+    #aiamsg = getAiaMsg(currentPath+"/tests/resources/messages/wh40k_captain.json")
     #aiamsg = getAiaMsg(currentPath+"/resources/test/message/email01.json")
     resp = nluSvc.callback(aiamsg)
     #logger.info(resp)

@@ -13,7 +13,8 @@ class NaturalLanguageInferenceSvc:
         #self.classifier = pipeline("ner", model="stevhliu/my_awesome_wnut_model")
         self.ner = pipeline("ner", model=model)
         self.logger.info(f"[LOAD] pipeline task={task} > model={model}")
-        self.candidate_labels =  [e.value for e in NLI_LABELS]
+        self.candidate_labels =  [e.value['label'] for e in NLI_LABELS]
+        self.logger.debug(self.candidate_labels)
 
     def addCandidateLabels(self, candidate_labels= []):
         self.candidate_labels.extend(candidate_labels)
@@ -26,11 +27,14 @@ class NaturalLanguageInferenceSvc:
         resp = self.score(msg)
         resp = list(zip(resp["labels"], resp["scores"]))
         max_score = max(resp, key=lambda x: x[1])
+        self.logger.debug(f"max_score={max_score}")
+        enum_name = NLI_LABELS.find_enum_by_label(max_score[0])
+        self.logger.debug(enum_name)
         ret = {
             "text": msg,
             "label": max_score[0],
             "score": max_score[1],
-            "code": NLI_LABELS(max_score[0]).name
+            "code": enum_name
         }
         return ret
 

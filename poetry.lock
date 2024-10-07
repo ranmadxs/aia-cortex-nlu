@@ -272,6 +272,7 @@ spacy = ">=3.7.0,<3.8.0"
 [package.source]
 type = "url"
 url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz"
+
 [[package]]
 name = "filelock"
 version = "3.15.4"
@@ -661,7 +662,7 @@ test = ["pytest (>=7.2)", "pytest-cov (>=4.0)"]
 
 [[package]]
 name = "nltk"
-version = "3.8.2"
+version = "3.9.1"
 description = "Natural Language Toolkit"
 category = "main"
 optional = false
@@ -674,7 +675,7 @@ regex = ">=2021.8.3"
 tqdm = "*"
 
 [package.extras]
-all = ["scipy", "requests", "scikit-learn", "numpy", "matplotlib", "python-crfsuite", "twython", "pyparsing"]
+all = ["numpy", "requests", "twython", "python-crfsuite", "pyparsing", "scipy", "matplotlib", "scikit-learn"]
 corenlp = ["requests"]
 machine-learning = ["numpy", "python-crfsuite", "scikit-learn", "scipy"]
 plot = ["matplotlib"]
@@ -1758,7 +1759,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "207fddb8eeaef64760a349d42b03a3dd6075a8bf45ab12f3c6766cbcf15bbd66"
+content-hash = "6941cb743a0df18c60e122434996155a2c8d195668df3af66ca55f860118720a"
 
 [metadata.files]
 absl-py = []
