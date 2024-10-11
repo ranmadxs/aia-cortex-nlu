@@ -23,7 +23,7 @@ def run():
     entry point
     """
     logger.info(f"Start Daemon cortex NLU v{getVersion()}")
-    os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices=False'
+    #os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices=False'
     logger.info(f"f_xla_enable_xla_devices=False")    
     nluSvc = NLUService(os.environ['CLOUDKAFKA_TOPIC_PRODUCER'], os.environ['CLOUDKAFKA_TOPIC_CONSUMER'], __version__)
     nluSvc.kafkaListener()
